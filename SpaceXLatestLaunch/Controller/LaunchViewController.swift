@@ -13,6 +13,7 @@ class LaunchViewController: UIViewController {
     @IBOutlet weak var rocketLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
