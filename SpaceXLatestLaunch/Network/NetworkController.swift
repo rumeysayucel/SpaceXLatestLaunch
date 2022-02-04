@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Network {
+class NetworkController {
     func fetchLaunchInfo(completion: @escaping (LaunchInfo?) -> Void) {
         let baseUrl = URL(string: "https://api.spacexdata.com/v4/launches/latest")!
 

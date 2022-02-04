@@ -13,9 +13,36 @@ class LaunchViewController: UIViewController {
     @IBOutlet weak var rocketLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
     
+    let networkController = NetworkController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameLabel.text = ""
+        detailsLabel.text = ""
+        rocketLabel.text = ""
+        
+        networkController.fetchLaunchInfo { (launchInfo) in
+            if let launchInfo = launchInfo {
+                self.updateUI(with: launchInfo)
+            }
+        }
+    }
+    
+    func updateUI(with launchInfo: LaunchInfo) {
+        networkController.fetchLaunchPhoto(from: launchInfo.links.patch.large) { (image) in
+            DispatchQueue.main.async {
+                self.imageView.image = image
+                self.nameLabel.text = launchInfo.name.uppercased()
+                self.rocketLabel.text = "🚀 " + launchInfo.rocket
+                
+                if launchInfo.details != nil {
+                    self.detailsLabel.text = launchInfo.details
+                }else {
+                    self.detailsLabel.isHidden = true
+                }
+            }
+        }
         
     }
 
