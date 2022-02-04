@@ -8,13 +8,17 @@
 import UIKit
 
 class LaunchViewController: UIViewController {
+    
+    // MARK: - UI Elements
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rocketLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
     
+    // MARK: - Properties
     let networkController = NetworkController()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +33,7 @@ class LaunchViewController: UIViewController {
         }
     }
     
+    // MARK: - Functions
     func updateUI(with launchInfo: LaunchInfo) {
         networkController.fetchLaunchPhoto(from: launchInfo.links.patch.large) { (image) in
             DispatchQueue.main.async {
@@ -43,9 +48,7 @@ class LaunchViewController: UIViewController {
                 }
             }
         }
-        
     }
-
 
 }
 

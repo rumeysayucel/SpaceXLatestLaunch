@@ -20,7 +20,7 @@ class NetworkController {
                 completion(nil)
             }
         }
-        
+    
         dataTask.resume()
     }
     
